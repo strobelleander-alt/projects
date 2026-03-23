@@ -94,31 +94,34 @@ Zum Schluss gibt die eigentliche Rechnung „AktuellerWert-VormonatWert“ ledig
 Hinweis: Da wir immer die Änderung des letzten abgeschlossenen Monats mit dem vorangegangenen Monat vergleichen wollen, wird hier die Berechnungslogik einen Monat nach hinten verschoben. Kurz gesagt, aktueller Monat ist hier der letzte abgeschlossene Monat.
 
 Berechnung der prozentualen HEK-Änderung (Aktueller Monat-Vormonat)
-
+<img src="prozent.Änder.png" alt="Power BI Bericht Projekt 1" width="600">
 Bei diesem Measure wird dieselbe Logik verwendet, die auch bei der absoluten Änderung genutzt wird. Allerdings wird hier am Ende noch eine einfache prozentuale Änderungsrate berechnet.
 
 Berechnung der absoluten HEK-Änderung (Aktuelles Jahr-Vorheriges Jahr)
-
+<img src="abs. CY PY.png" alt="Power BI Bericht Projekt 1" width="600">
 Vom Grundaufbau des Measures wird hier eine sehr ähnliche Methode wie eben verwendet. Der entscheidende Unterschied liegt darin, dass die Variable „VorjahrWert“ vom vorherigen Monat nochmal ein ganzes Jahr zurückgeht und dann diesen Wert wiedergibt. Es wird also die Abweichung der HEK des letzten abgeschlossenen Monats zum selben Vorjahresmonat berechnet
 
 Berechnung der prozentualen HEK-Änderung (Aktuelles Jahr-Vorheriges Jahr)
-
+<img src="prozent. CY PY.png" alt="Power BI Bericht Projekt 1" width="600">
 Erneut wird hier lediglich die Funktion „Return“ in eine andere Rechnungslogik für prozentuale Änderungen umgewandelt wie oben schon beschrieben.
 
 Relevante Filter
 Damit der Bericht die angeforderten Daten wiedergibt sind verschiedene Filterungen von großer Bedeutung für die Validität. 
 
 Filterung für alle Seiten:
+<img src="relevante Filter 1.png" alt="Power BI Bericht Projekt 1" width="600">
 Der „is_past“ Filter sorgt dafür, dass lediglich Daten aus vergangenen Perdioden gezeigt werden.
 „group_costing ist X“ stellt sicher, dass ausschließlich das Werk berücksichtigt wird, in dem das Produkt produziert wurde. 
 Da uns nur Handelswaren und fertige Produkte interessieren wird außerdem bei article_group_type auf FF und HW gefiltert.
 Zu Guter Letzt wird mit dem Filter „costing_variant“ auf die gewünschte Kalkulationsvariante ZK01 gefiltert, die von den zustädigen SAP-Kollegen genutzt wird
 
 Filterung für Linien/Säulen-Diagramm:
+<img src="relevante Filter 2.png" alt="Power BI Bericht Projekt 1" width="600">
 Durch die Bedingung „is_current_month ist 0“ wird der aktuelle Monat aus dem Visual ausgeblendet, da wir nur abgeschlossene Monate haben wollen
 
 Visualisierung
 Da der Bericht vertrauliche Daten enthält, werden in diesen Schaubildern ausschließlich fiktive bzw. geschwärzte Inhalte verwendet.
+<img src="overview P1.png" alt="Power BI Bericht Projekt 1" width="600">
 </pre>
 </div>
 
