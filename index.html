@@ -83,11 +83,14 @@ Dim_currency
 
 <h3>Erstellte DAX Measures</h3>
 Berechnung des durchschnittlichen Umsatzes in EUR
+
 <img src="umsatzchange.png" alt="Power BI Bericht Projekt 1" width="600">
+
 Das Measure “Average Sales €” berechnet hier eine simple Division, wodurch das Ergebnis der Quotient aus „Sales_EUR“ und „Sales_pcs“ ist.
 
 <h3>Berechnung der absoluten HEK-Änderung (Aktueller Monat-Vormonat)</h3>
 <img src="Unbenannt.png" alt="Power BI Bericht Projekt 1" width="600">
+
 Zu Beginn wird die Variable „AktuellerWert“ definiert und gibt die HEK des Vormonats wieder, wobei man das ganze vom aktuellen Zeitpunkt aus betrachtet. 
 Danach wird „VormonatWert“ als Variable festgelegt, damit der HEK-Wert des Monats vor dem letzten Monat (aktueller Monat minus 2) angezeigt wird.
 Zum Schluss gibt die eigentliche Rechnung „AktuellerWert-VormonatWert“ lediglich die absolute Änderung wieder.
@@ -95,14 +98,17 @@ Hinweis: Da wir immer die Änderung des letzten abgeschlossenen Monats mit dem v
 
 <h3>Berechnung der prozentualen HEK-Änderung (Aktueller Monat-Vormonat)</h3>
 <img src="prozent.Aender.png" alt="Power BI Bericht Projekt 1" width="600">
+
 Bei diesem Measure wird dieselbe Logik verwendet, die auch bei der absoluten Änderung genutzt wird. Allerdings wird hier am Ende noch eine einfache prozentuale Änderungsrate berechnet.
 
 <h3>Berechnung der absoluten HEK-Änderung (Aktuelles Jahr-Vorheriges Jahr)</h3>
 <img src="abs.CYPY.png" alt="Power BI Bericht Projekt 1" width="600">
+
 Vom Grundaufbau des Measures wird hier eine sehr ähnliche Methode wie eben verwendet. Der entscheidende Unterschied liegt darin, dass die Variable „VorjahrWert“ vom vorherigen Monat nochmal ein ganzes Jahr zurückgeht und dann diesen Wert wiedergibt. Es wird also die Abweichung der HEK des letzten abgeschlossenen Monats zum selben Vorjahresmonat berechnet
 
 <h3>Berechnung der prozentualen HEK-Änderung (Aktuelles Jahr-Vorheriges Jahr)</h3>
 <img src="prozent.CYPY.png" alt="Power BI Bericht Projekt 1" width="600">
+
 Erneut wird hier lediglich die Funktion „Return“ in eine andere Rechnungslogik für prozentuale Änderungen umgewandelt wie oben schon beschrieben.
 
 <h3>Relevante Filter</h3>
@@ -110,6 +116,7 @@ Damit der Bericht die angeforderten Daten wiedergibt sind verschiedene Filterung
 
 <h3>Filterung für alle Seiten:</h3>
 <img src="relevanteFilter1.png" alt="Power BI Bericht Projekt 1" width="300">
+
 Der „is_past“ Filter sorgt dafür, dass lediglich Daten aus vergangenen Perdioden gezeigt werden.
 „group_costing ist X“ stellt sicher, dass ausschließlich das Werk berücksichtigt wird, in dem das Produkt produziert wurde. 
 Da uns nur Handelswaren und fertige Produkte interessieren wird außerdem bei article_group_type auf FF und HW gefiltert.
@@ -117,10 +124,12 @@ Zu Guter Letzt wird mit dem Filter „costing_variant“ auf die gewünschte Kal
 
 <h3>Filterung für Linien/Säulen-Diagramm:</h3>
 <img src="relevanteFilter2.png" alt="Power BI Bericht Projekt 1" width="300">
+
 Durch die Bedingung „is_current_month ist 0“ wird der aktuelle Monat aus dem Visual ausgeblendet, da wir nur abgeschlossene Monate haben wollen
 
 <h3>Visualisierung</h3>
 Da der Bericht vertrauliche Daten enthält, werden in diesen Schaubildern ausschließlich fiktive bzw. geschwärzte Inhalte verwendet.
+
 <img src="overviewP1.png" alt="Power BI Bericht Projekt 1" width="600">
 <img src="detailsLC.png" alt="Power BI Bericht Projekt 1" width="600">
 <img src="detailseur.png" alt="Power BI Bericht Projekt 1" width="600">
