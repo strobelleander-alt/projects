@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Meine Projekte</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .projekt {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Meine Projekte</h1>
+
+<p>
+Dieses Portfolio zeigt ausgewählte Projekte aus meinem Praxissemester im Bereich 
+Global Business Intelligence Controlling beim international tätigen Sensorhersteller <strong>ifm</strong>.
+</p>
+
+<!-- PROJEKT 1 -->
+<div class="projekt">
+    <h2>Projekt 1: Life Cycle Manufacturing Costs Report</h2>
+
+    <h3>Beschreibung</h3>
+    <p>
+    Dieser Power BI Bericht bietet eine umfassende Analyse der Herstelleinzelkosten (HEK) 
+    und ermöglicht eine grafische Darstellung sowie historische Vergleiche über verschiedene Zeiträume.
+    </p>
+
+    <p>
+    Die Kostenentwicklung kann monatlich und jährlich anhand von Änderungsraten nachvollzogen werden. 
+    Zusätzlich wird der Außenumsatz in Stückzahlen und Euro inklusive Durchschnittswerten dargestellt.
+    </p>
+
+    <p>
+    Interaktive Slicer ermöglichen die Filterung nach Produkten und Zeiträumen. 
+    Eine Detailseite zeigt Kennzahlen in lokaler Währung für länderspezifische Analysen.
+    </p>
+
+    <h3>Relevante Tabellen</h3>
+    <ul>
+        <li>Fct_manufacturing_costs</li>
+        <li>Dim_date</li>
+        <li>Dim_material</li>
+        <li>Dim_material_plant</li>
+        <li>Dim_currency</li>
+    </ul>
+
+    <h3>DAX Measures</h3>
+    <ul>
+        <li>Average Sales € (Sales_EUR / Sales_pcs)</li>
+        <li>Absolute HEK-Änderung (Monat)</li>
+        <li>Prozentuale HEK-Änderung (Monat)</li>
+        <li>Absolute HEK-Änderung (Jahr)</li>
+        <li>Prozentuale HEK-Änderung (Jahr)</li>
+    </ul>
+
+    <h3>Filterlogik</h3>
+    <ul>
+        <li>is_past → nur vergangene Perioden</li>
+        <li>group_costing → korrektes Werk</li>
+        <li>article_group_type → FF und HW</li>
+        <li>costing_variant → ZK01</li>
+        <li>is_current_month = 0 → nur abgeschlossene Monate</li>
+    </ul>
+
+    <h3>Besonderheit</h3>
+    <p>
+    Der Bericht ermöglicht eine transparente und datenbasierte Entscheidungsfindung im Controlling.
+    </p>
+</div>
+
+<!-- PROJEKT 2 -->
+<div class="projekt">
+    <h2>Projekt 2: Internationale Fabrikplanung</h2>
+
+    <h3>Beschreibung</h3>
+    <p>
+    Dieser Power BI Bericht analysiert Verkaufs- und Produktionsdaten und bietet eine 
+    übersichtliche Darstellung der verkauften Stückzahlen nach Industrie, Absatzland und Zulassungen.
+    </p>
+
+    <p>
+    Filtermöglichkeiten nach Material, Produktionslinie und Produktgruppe ermöglichen eine flexible Analyse.
+    </p>
+
+    <p>
+    Eine interaktive Heatmap visualisiert:
+    </p>
+    <ul>
+        <li>Sales by Country</li>
+        <li>Number of Customers by Country</li>
+    </ul>
+
+    <p>
+    Ergänzend zeigt ein Kreisdiagramm die fünf größten Kundenbranchen.
+    </p>
+
+    <h3>Relevante Tabellen & Felder</h3>
+    <ul>
+        <li><strong>KPI fct_production_pieces_v:</strong> Quantity factor</li>
+        <li><strong>Dim_material_v:</strong> Material</li>
+        <li><strong>Prozesse:</strong> Core process, Level of competence, complexity, automation</li>
+        <li><strong>Industries:</strong> Sales €, Customer</li>
+    </ul>
+
+    <h3>Nutzen</h3>
+    <p>
+    Der Bericht unterstützt fundierte Entscheidungen in der Produktions- und Fabrikplanung.
+    </p>
+</div>
+
+</body>
+</html>
