@@ -11,8 +11,9 @@
             background-color: #f5f5f5;
         }
 
-        h1 {
-            color: #333;
+        .container {
+            max-width: 1000px;
+            margin: auto;
         }
 
         .projekt {
@@ -21,6 +22,10 @@
             margin-bottom: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
         }
 
         h2 {
@@ -32,112 +37,120 @@
             color: #444;
         }
 
+        p {
+            line-height: 1.6;
+        }
+
         ul {
             padding-left: 20px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>Meine Projekte</h1>
 
 <p>
-Dieses Portfolio zeigt ausgewählte Projekte aus meinem Praxissemester im Bereich 
-Global Business Intelligence Controlling beim international tätigen Sensorhersteller <strong>ifm</strong>.
+Dieses Repository umfasst ausgewählte, von mir durchgeführte Projekte aus meinem Praxissemester im Bereich Global Business Intelligence Controlling beim international tätigen Sensorhersteller ifm.
 </p>
 
-<!-- PROJEKT 1 -->
 <div class="projekt">
-    <h2>Projekt 1: Life Cycle Manufacturing Costs Report</h2>
+<pre>
+Projekt 1
+Life cycle Manufacturing costs report
+Historische Analyse von Herstelleinzelkosten (HEK) in PowerBI
 
-    <h3>Beschreibung</h3>
-    <p>
-    Dieser Power BI Bericht bietet eine umfassende Analyse der Herstelleinzelkosten (HEK) 
-    und ermöglicht eine grafische Darstellung sowie historische Vergleiche über verschiedene Zeiträume.
-    </p>
+Beschreibung
+Dieser Power-BI-Bericht bietet eine umfassende Analyse der Herstelleinzelkosten und ermöglicht deren grafische Darstellung sowie einen historischen Vergleich über verschiedene Zeiträume. Die Entwicklung der Kosten kann sowohl monatlich als auch jährlich anhand von Änderungsraten nachvollzogen werden, wodurch Trends, Abweichungen und Kostenentwicklungen transparent dargestellt werden.
+Ergänzend wird der Außenumsatz sowohl in Stückzahlen als auch in Euro dargestellt, inklusive durchschnittlicher Werte, um eine fundierte Bewertung der wirtschaftlichen Performance zu ermöglichen.
+Mithilfe von zwei interaktiven Slicern können die Analysen sowohl auf beliebige Produkte als auch auf bestimmte Perioden gefiltert werden. Zusätzlich steht eine Detailseite zur Verfügung, auf der die Kennzahlen in der jeweiligen lokalen Währung angezeigt werden, um länderspezifische Auswertungen und Vergleiche zu erleichtern.
+Der Bericht unterstützt somit eine transparente, flexible und datenbasierte Entscheidungsfindung im Controlling.
 
-    <p>
-    Die Kostenentwicklung kann monatlich und jährlich anhand von Änderungsraten nachvollzogen werden. 
-    Zusätzlich wird der Außenumsatz in Stückzahlen und Euro inklusive Durchschnittswerten dargestellt.
-    </p>
+Relevante Tabellen
+Fct_manufacturing _costs
+Dim_date
+Dim_material
+Dim_material_plant
+Dim_currency
 
-    <p>
-    Interaktive Slicer ermöglichen die Filterung nach Produkten und Zeiträumen. 
-    Eine Detailseite zeigt Kennzahlen in lokaler Währung für länderspezifische Analysen.
-    </p>
+Erstellte DAX Measures
+Berechnung des durchschnittlichen Umsatzes in EUR
 
-    <h3>Relevante Tabellen</h3>
-    <ul>
-        <li>Fct_manufacturing_costs</li>
-        <li>Dim_date</li>
-        <li>Dim_material</li>
-        <li>Dim_material_plant</li>
-        <li>Dim_currency</li>
-    </ul>
+Das Measure “Average Sales €” berechnet hier eine simple Division, wodurch das Ergebnis der Quotient aus „Sales_EUR“ und „Sales_pcs“ ist.
 
-    <h3>DAX Measures</h3>
-    <ul>
-        <li>Average Sales € (Sales_EUR / Sales_pcs)</li>
-        <li>Absolute HEK-Änderung (Monat)</li>
-        <li>Prozentuale HEK-Änderung (Monat)</li>
-        <li>Absolute HEK-Änderung (Jahr)</li>
-        <li>Prozentuale HEK-Änderung (Jahr)</li>
-    </ul>
+Berechnung der absoluten HEK-Änderung (Aktueller Monat-Vormonat)
 
-    <h3>Filterlogik</h3>
-    <ul>
-        <li>is_past → nur vergangene Perioden</li>
-        <li>group_costing → korrektes Werk</li>
-        <li>article_group_type → FF und HW</li>
-        <li>costing_variant → ZK01</li>
-        <li>is_current_month = 0 → nur abgeschlossene Monate</li>
-    </ul>
+Zu Beginn wird die Variable „AktuellerWert“ definiert und gibt die HEK des Vormonats wieder, wobei man das ganze vom aktuellen Zeitpunkt aus betrachtet. 
+Danach wird „VormonatWert“ als Variable festgelegt, damit der HEK-Wert des Monats vor dem letzten Monat (aktueller Monat minus 2) angezeigt wird.
+Zum Schluss gibt die eigentliche Rechnung „AktuellerWert-VormonatWert“ lediglich die absolute Änderung wieder.
+Hinweis: Da wir immer die Änderung des letzten abgeschlossenen Monats mit dem vorangegangenen Monat vergleichen wollen, wird hier die Berechnungslogik einen Monat nach hinten verschoben. Kurz gesagt, aktueller Monat ist hier der letzte abgeschlossene Monat.
 
-    <h3>Besonderheit</h3>
-    <p>
-    Der Bericht ermöglicht eine transparente und datenbasierte Entscheidungsfindung im Controlling.
-    </p>
+Berechnung der prozentualen HEK-Änderung (Aktueller Monat-Vormonat)
+
+Bei diesem Measure wird dieselbe Logik verwendet, die auch bei der absoluten Änderung genutzt wird. Allerdings wird hier am Ende noch eine einfache prozentuale Änderungsrate berechnet.
+
+Berechnung der absoluten HEK-Änderung (Aktuelles Jahr-Vorheriges Jahr)
+
+Vom Grundaufbau des Measures wird hier eine sehr ähnliche Methode wie eben verwendet. Der entscheidende Unterschied liegt darin, dass die Variable „VorjahrWert“ vom vorherigen Monat nochmal ein ganzes Jahr zurückgeht und dann diesen Wert wiedergibt. Es wird also die Abweichung der HEK des letzten abgeschlossenen Monats zum selben Vorjahresmonat berechnet
+
+Berechnung der prozentualen HEK-Änderung (Aktuelles Jahr-Vorheriges Jahr)
+
+Erneut wird hier lediglich die Funktion „Return“ in eine andere Rechnungslogik für prozentuale Änderungen umgewandelt wie oben schon beschrieben.
+
+Relevante Filter
+Damit der Bericht die angeforderten Daten wiedergibt sind verschiedene Filterungen von großer Bedeutung für die Validität. 
+
+Filterung für alle Seiten:
+Der „is_past“ Filter sorgt dafür, dass lediglich Daten aus vergangenen Perdioden gezeigt werden.
+„group_costing ist X“ stellt sicher, dass ausschließlich das Werk berücksichtigt wird, in dem das Produkt produziert wurde. 
+Da uns nur Handelswaren und fertige Produkte interessieren wird außerdem bei article_group_type auf FF und HW gefiltert.
+Zu Guter Letzt wird mit dem Filter „costing_variant“ auf die gewünschte Kalkulationsvariante ZK01 gefiltert, die von den zustädigen SAP-Kollegen genutzt wird
+
+Filterung für Linien/Säulen-Diagramm:
+Durch die Bedingung „is_current_month ist 0“ wird der aktuelle Monat aus dem Visual ausgeblendet, da wir nur abgeschlossene Monate haben wollen
+
+Visualisierung
+Da der Bericht vertrauliche Daten enthält, werden in diesen Schaubildern ausschließlich fiktive bzw. geschwärzte Inhalte verwendet.
+</pre>
 </div>
 
-<!-- PROJEKT 2 -->
 <div class="projekt">
-    <h2>Projekt 2: Internationale Fabrikplanung</h2>
+<pre>
+Projekt 2
+Internationale Fabrikplanung
+Analyse von Verkaufs- und Produktionsdaten in Power BI
 
-    <h3>Beschreibung</h3>
-    <p>
-    Dieser Power BI Bericht analysiert Verkaufs- und Produktionsdaten und bietet eine 
-    übersichtliche Darstellung der verkauften Stückzahlen nach Industrie, Absatzland und Zulassungen.
-    </p>
+Beschreibung
+Der Power BI Bericht „Fabrikplanung“ bietet eine übersichtliche Darstellung der verkauften Stückzahlen und deren Verteilung nach Industrie, Absatzland und vorhandenen Zulassungen.
+Durch gezielte Filtermöglichkeiten nach Material (Produkt), Produktionslinie und Produktgruppe lassen sich relevante Daten flexibel analysieren. Der Bericht unterstützt damit eine fundierte Entscheidungsfindung in der Produktions- und Fabrikplanung.
+Eine integrierte Heatmap visualisiert wahlweise per Button die Kennzahlen „Sales by Country“ oder „Number of Customers by Country“ und ermöglicht so eine geografische Analyse der Absatz- und Kundenstruktur. Ergänzend zeigt ein Kreisdiagramm die fünf größten Kundenbranchen und verdeutlicht deren Anteil am Gesamtabsatz.
 
-    <p>
-    Filtermöglichkeiten nach Material, Produktionslinie und Produktgruppe ermöglichen eine flexible Analyse.
-    </p>
+Relevante Tabellen und Felder
+KPI fct_production_pieces_v
+• Quantity factor  Anzahl an produzierten Stückzahlen
+Dim_material_v
+• Material Slicer für die Auswahl von bestimmen Endprodukten
 
-    <p>
-    Eine interaktive Heatmap visualisiert:
-    </p>
-    <ul>
-        <li>Sales by Country</li>
-        <li>Number of Customers by Country</li>
-    </ul>
+Prozesse
+• Core process beschreibt den Produktionsprozess
+• Level of competence Kompetenzlevel des jeweiligen “Core process”
+• Level of complexity Komplexitätslevel des jeweiligen
+• Level of automatation Automatisierungslevel bzw.Potential
 
-    <p>
-    Ergänzend zeigt ein Kreisdiagramm die fünf größten Kundenbranchen.
-    </p>
+Industries
+• Sales € Summe an Umsatz in EUR
+• Customer Internationaler Kunde aus Basis der Branche (Bsp. Automotive)
+</pre>
+</div>
 
-    <h3>Relevante Tabellen & Felder</h3>
-    <ul>
-        <li><strong>KPI fct_production_pieces_v:</strong> Quantity factor</li>
-        <li><strong>Dim_material_v:</strong> Material</li>
-        <li><strong>Prozesse:</strong> Core process, Level of competence, complexity, automation</li>
-        <li><strong>Industries:</strong> Sales €, Customer</li>
-    </ul>
-
-    <h3>Nutzen</h3>
-    <p>
-    Der Bericht unterstützt fundierte Entscheidungen in der Produktions- und Fabrikplanung.
-    </p>
 </div>
 
 </body>
